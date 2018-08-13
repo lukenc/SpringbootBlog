@@ -1,14 +1,15 @@
 package com.my.blog.website.interceptor;
 
+import com.my.blog.website.constant.WebConst;
+import com.my.blog.website.dto.Types;
 import com.my.blog.website.model.Vo.OptionVo;
 import com.my.blog.website.model.Vo.UserVo;
 import com.my.blog.website.service.IOptionService;
 import com.my.blog.website.service.IUserService;
 import com.my.blog.website.utils.*;
-import com.my.blog.website.constant.WebConst;
-import com.my.blog.website.dto.Types;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -34,7 +35,7 @@ public class BaseInterceptor implements HandlerInterceptor {
 
     private MapCache cache = MapCache.single();
 
-    @Resource
+    @Autowired
     private Commons commons;
 
     @Resource
@@ -45,10 +46,14 @@ public class BaseInterceptor implements HandlerInterceptor {
         String contextPath = request.getContextPath();
         // System.out.println(contextPath);
         String uri = request.getRequestURI();
-
         LOGGE.info("UserAgent: {}", request.getHeader(USER_AGENT));
         LOGGE.info("用户访问地址: {}, 来路地址: {}", uri, IPKit.getIpAddrByRequest(request));
-
+//        if(WebConst.initConfig.isEmpty()){
+//           List<OptionVo> optionVos= optionService.getOptions();
+//            for (OptionVo ov:optionVos) {
+//                WebConst.initConfig.put(ov.getName(),ov.getValue());
+//            }
+//        }
 
         //请求拦截处理
         UserVo user = TaleUtils.getLoginUser(request);

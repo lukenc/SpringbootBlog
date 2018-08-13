@@ -27,3 +27,4 @@ target
 tale.sql
 my-blog.sh
 *.out
+src/main/resources/application-produce.properties
