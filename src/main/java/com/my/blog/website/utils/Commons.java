@@ -12,6 +12,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -274,10 +275,19 @@ public final class Commons {
      * @return
      */
     public static String show_thumb(ContentVo contents) {
+        if(contents==null) return show_thumb_img_for_meta();
         int cid = contents.getCid();
         int size = cid % 20;
         size = size == 0 ? 1 : size;
         return "/user/img/rand/" + size + ".jpg";
+    }
+
+    public static String show_thumb_img_for_meta() {
+        Random r = new Random();
+        int cid = r.nextInt();
+        int size = cid % 20;
+        size = size == 0 ? 1 : size;
+        return "http://blog.wmsay.com/user/img/rand/" + size + ".jpg";
     }
 
 
