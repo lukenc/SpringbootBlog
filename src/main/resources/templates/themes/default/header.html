@@ -23,6 +23,31 @@
     <link th:href="@{//cdn.bootcss.com/highlight.js/9.9.0/styles/xcode.min.css}" rel="stylesheet"/>
     <link th:href="@{/user/css/style.min.css}" rel="stylesheet"/>
     <script th:src="@{//cdn.bootcss.com/jquery/2.2.3/jquery.min.js}"></script>
+    <!--360自动推送搜索-->
+    <script>
+        (function(){
+            var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?f258ba9671d7f5352f28683893203b0f":"https://jspassport.ssl.qhimg.com/11.0.1.js?f258ba9671d7f5352f28683893203b0f";
+            document.write('<script src="' + src + '" id="sozz"><\/script>');
+        })();
+    </script>
+    <!--360自动推送搜索结束-->
+
+    <!--百度搜索收录-->
+    <script>
+        (function(){
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+    <!--百度搜索收录-->
 <style>
     #bdshare_weixin_qrcode_dialog_qr table {
         width: auto !important;
