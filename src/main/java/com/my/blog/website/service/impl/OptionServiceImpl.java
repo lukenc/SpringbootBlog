@@ -6,6 +6,7 @@ import com.my.blog.website.model.Vo.OptionVoExample;
 import com.my.blog.website.service.IOptionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -56,6 +57,7 @@ public class OptionServiceImpl implements IOptionService {
     }
 
     @Override
+    @Cacheable(value = "option",key = "#root.methodName+#p+':'+#limit")
     public OptionVo getOptionByName(String name) {
         return optionDao.selectByPrimaryKey(name);
     }

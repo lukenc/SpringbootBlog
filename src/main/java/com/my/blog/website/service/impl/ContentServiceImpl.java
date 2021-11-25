@@ -19,6 +19,7 @@ import com.vdurmont.emoji.EmojiParser;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -98,6 +99,7 @@ public class ContentServiceImpl implements IContentService {
     }
 
     @Override
+    @Cacheable(value = "article:list",key = "#root.methodName+#p+':'+#limit")
     public PageInfo<ContentVo> getContents(Integer p, Integer limit) {
         LOGGER.debug("Enter getContents method");
         ContentVoExample example = new ContentVoExample();
@@ -111,6 +113,7 @@ public class ContentServiceImpl implements IContentService {
     }
 
     @Override
+    @Cacheable(value = "article:detail",key = "#root.methodName+':'+#id")
     public ContentVo getContents(String id) {
         if (StringUtils.isNotBlank(id)) {
             if (Tools.isNumber(id)) {

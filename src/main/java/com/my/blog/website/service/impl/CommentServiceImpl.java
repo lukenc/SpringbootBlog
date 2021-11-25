@@ -16,6 +16,7 @@ import com.my.blog.website.service.IContentService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -75,6 +76,7 @@ public class CommentServiceImpl implements ICommentService {
     }
 
     @Override
+    @Cacheable(value = "comment",key = "#root.methodName+':'+#cid+':'+#page+':'+#limit")
     public PageInfo<CommentBo> getComments(Integer cid, int page, int limit) {
 
         if (null != cid) {
